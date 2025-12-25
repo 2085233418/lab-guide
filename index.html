@@ -2,29 +2,237 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>ErrorOS 实验指导书</title>
+  <title>ErrorOS 实验指导书 - 从零开始构建RISC-V操作系统</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="ErrorOS 操作系统实验指导书">
+  <meta name="description" content="ErrorOS 操作系统实验指导书 - 用Rust语言在RISC-V架构上从零构建操作系统">
+  <meta name="keywords" content="操作系统,Rust,RISC-V,ErrorOS,OS开发,教程">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root {
+      --theme-color: #2c3e50;
+      --theme-color-secondary: #42b983;
+    }
+
+    /* 自定义样式 */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+
+    /* 侧边栏样式优化 */
+    .sidebar {
+      background-color: #f8f9fa;
+      border-right: 1px solid #e1e4e8;
+    }
+
+    .sidebar-nav > ul > li > p {
+      font-weight: 700;
+      font-size: 1.1em;
+      margin: 12px 0 8px;
+      color: var(--theme-color);
+    }
+
+    .sidebar-nav li {
+      margin: 4px 0;
+    }
+
+    .sidebar-nav a:hover {
+      color: var(--theme-color-secondary);
+    }
+
+    /* 代码块样式 */
+    pre[data-lang] {
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* 引用块样式 */
+    blockquote {
+      border-left: 4px solid var(--theme-color-secondary);
+      background-color: #f8f9fa;
+      padding: 12px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    /* 表格样式 */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    table th {
+      background-color: var(--theme-color);
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e1e4e8;
+    }
+
+    table tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    /* 标题样式 */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    h1 {
+      border-bottom: 2px solid var(--theme-color);
+      padding-bottom: 10px;
+    }
+
+    /* 封面样式 */
+    section.cover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    section.cover h1 {
+      color: white;
+      border: none;
+    }
+
+    section.cover .cover-main > p:last-child a {
+      color: white;
+      border: 2px solid white;
+    }
+
+    section.cover .cover-main > p:last-child a:hover {
+      background-color: white;
+      color: #667eea;
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    /* 代码高亮颜色 */
+    .token.keyword {
+      color: #d73a49;
+    }
+
+    .token.string {
+      color: #032f62;
+    }
+
+    .token.comment {
+      color: #6a737d;
+    }
+  </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">加载中...</div>
   <script>
     window.$docsify = {
-      name: 'ErrorOS 实验指导书',
+      name: '<span style="font-size: 1.2em;">📚 ErrorOS 实验指导书</span>',
       repo: 'https://github.com/2085233418/lab-guide',
       loadSidebar: true,
-      subMaxLevel: 2,
+      subMaxLevel: 3,
       auto2top: true,
+      maxLevel: 4,
+
+      // 封面功能
+      coverpage: false,
+
+      // 搜索配置
       search: {
-        placeholder: '搜索',
-        noData: '没有结果',
-        depth: 3
-      }
+        placeholder: '🔍 搜索文档...',
+        noData: '😢 没有找到结果',
+        depth: 4,
+        maxAge: 86400000
+      },
+
+      // 分页导航
+      pagination: {
+        previousText: '⬅️ 上一节',
+        nextText: '下一节 ➡️',
+        crossChapter: true,
+        crossChapterText: true
+      },
+
+      // 字数统计
+      count: {
+        countable: true,
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese'
+      },
+
+      // 代码复制
+      copyCode: {
+        buttonText: '复制',
+        errorText: '错误',
+        successText: '已复制'
+      },
+
+      // 外链在新标签打开
+      externalLinkTarget: '_blank',
+
+      // 路由模式
+      routerMode: 'history',
+
+      // 404页面
+      notFoundPage: true,
+
+      // 自定义插件
+      plugins: [
+        function(hook, vm) {
+          hook.beforeEach(function(html) {
+            // 添加编辑链接
+            var url = 'https://github.com/2085233418/lab-guide/blob/main/' + vm.route.file;
+            var editHtml = '[📝 在 GitHub 上编辑此页](' + url + ')\n\n';
+            return editHtml + html;
+          });
+
+          hook.afterEach(function(html) {
+            // 添加页脚
+            var footer = '<footer><hr/><p>© 2024 ErrorOS 开发团队 | 基于 <a href="https://docsify.js.org" target="_blank">docsify</a> 构建</p></footer>';
+            return html + footer;
+          });
+        }
+      ]
     }
   </script>
+
+  <!-- Docsify 核心 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+
+  <!-- 搜索插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+  <!-- 代码高亮 -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-rust.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-toml.min.js"></script>
+
+  <!-- 代码复制插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+
+  <!-- 分页导航插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+
+  <!-- 字数统计插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+
+  <!-- emoji 支持 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+
+  <!-- 图片缩放 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+
+  <!-- Google Analytics (可选) -->
+  <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.min.js"></script> -->
 </body>
 </html>
