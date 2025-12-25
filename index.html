@@ -90,26 +90,6 @@
       padding-bottom: 10px;
     }
 
-    /* 封面样式 */
-    section.cover {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    section.cover h1 {
-      color: white;
-      border: none;
-    }
-
-    section.cover .cover-main > p:last-child a {
-      color: white;
-      border: 2px solid white;
-    }
-
-    section.cover .cover-main > p:last-child a:hover {
-      background-color: white;
-      color: #667eea;
-    }
-
     /* 页脚 */
     footer {
       text-align: center;
@@ -136,28 +116,25 @@
   <div id="app">加载中...</div>
   <script>
     window.$docsify = {
-      name: '<span style="font-size: 1.2em;">📚 ErrorOS 实验指导书</span>',
+      name: 'ErrorOS 实验指导书',
       repo: 'https://github.com/2085233418/lab-guide',
       loadSidebar: true,
       subMaxLevel: 3,
       auto2top: true,
       maxLevel: 4,
 
-      // 封面功能
-      coverpage: false,
-
       // 搜索配置
       search: {
-        placeholder: '🔍 搜索文档...',
-        noData: '😢 没有找到结果',
+        placeholder: '搜索文档...',
+        noData: '没有找到结果',
         depth: 4,
         maxAge: 86400000
       },
 
       // 分页导航
       pagination: {
-        previousText: '⬅️ 上一节',
-        nextText: '下一节 ➡️',
+        previousText: '上一节',
+        nextText: '下一节',
         crossChapter: true,
         crossChapterText: true
       },
@@ -180,19 +157,13 @@
       // 外链在新标签打开
       externalLinkTarget: '_blank',
 
-      // 路由模式
-      routerMode: 'history',
-
-      // 404页面
-      notFoundPage: true,
-
       // 自定义插件
       plugins: [
         function(hook, vm) {
           hook.beforeEach(function(html) {
             // 添加编辑链接
             var url = 'https://github.com/2085233418/lab-guide/blob/main/' + vm.route.file;
-            var editHtml = '[📝 在 GitHub 上编辑此页](' + url + ')\n\n';
+            var editHtml = '[在 GitHub 上编辑此页](' + url + ')\n\n';
             return editHtml + html;
           });
 
@@ -226,13 +197,7 @@
   <!-- 字数统计插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
 
-  <!-- emoji 支持 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
-
   <!-- 图片缩放 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-
-  <!-- Google Analytics (可选) -->
-  <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.min.js"></script> -->
 </body>
 </html>

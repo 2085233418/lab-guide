@@ -12,13 +12,13 @@
 
 完成本章学习后，你将能够：
 
-- ✅ 理解 VFS（虚拟文件系统）的设计思想
-- ✅ 掌握 Trait Object（动态多态）的使用
-- ✅ 实现 File trait 和 Inode trait
-- ✅ 设计文件描述符表
-- ✅ 实现标准输入输出（stdin/stdout/stderr）
-- ✅ 编写内存文件系统（RamFS）
-- ✅ 实现文件系统调用（open/read/write/close/mkdir）
+-  理解 VFS（虚拟文件系统）的设计思想
+-  掌握 Trait Object（动态多态）的使用
+-  实现 File trait 和 Inode trait
+-  设计文件描述符表
+-  实现标准输入输出（stdin/stdout/stderr）
+-  编写内存文件系统（RamFS）
+-  实现文件系统调用（open/read/write/close/mkdir）
 
 ---
 
@@ -145,15 +145,15 @@
 
 ## 技术亮点
 
-- 🎭 **Trait Object**：动态多态的优雅应用
-- 📁 **VFS 抽象**：支持多种文件系统
-- 🔐 **权限管理**：保护文件安全
+-  **Trait Object**：动态多态的优雅应用
+-  **VFS 抽象**：支持多种文件系统
+-  **权限管理**：保护文件安全
 
 ---
 
 ## 预计时间
 
-⏱️ **约 6-8 小时**（本章内容较多）
+ **约 6-8 小时**（本章内容较多）
 
 ---
 
@@ -161,4 +161,4 @@
 
 让我们构建文件系统！
 
-👉 [7.1.1 VFS 设计与 File trait](../实验指导书汇总/7.1.1-VFS设计与File%20trait.md)
+ [7.1.1 VFS 设计与 File trait](../实验指导书汇总/7.1.1-VFS设计与File%20trait.md)
