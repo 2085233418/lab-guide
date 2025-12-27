@@ -196,8 +196,4 @@ git push origin feature/your-feature
 
 [立即开始学习](前言.md)
 
----
-
-**© 2024 ErrorOS 开发团队**
-
 </div>
