@@ -8,6 +8,7 @@
   <meta name="keywords" content="操作系统,Rust,RISC-V,ErrorOS,OS开发,教程">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css">
   <style>
     :root {
       --theme-color: #2c3e50;
@@ -110,6 +111,18 @@
     .token.comment {
       color: #6a737d;
     }
+
+    /* 侧边栏折叠图标样式优化 */
+    .sidebar-nav .folder::before {
+      content: '▶';
+      margin-right: 5px;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .sidebar-nav .folder.open::before {
+      transform: rotate(90deg);
+    }
   </style>
 </head>
 <body>
@@ -122,6 +135,9 @@
       subMaxLevel: 3,
       auto2top: true,
       maxLevel: 4,
+
+      // 侧边栏折叠配置
+      sidebarDisplayLevel: 1,
 
       // 搜索配置
       search: {
@@ -179,6 +195,9 @@
 
   <!-- Docsify 核心 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+
+  <!-- 侧边栏折叠插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
 
   <!-- 搜索插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
