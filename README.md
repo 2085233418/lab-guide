@@ -6,11 +6,6 @@
 
 **用 Rust 语言在 RISC-V 架构上从零构建操作系统**
 
-[![GitHub stars](https://img.shields.io/github/stars/2085233418/lab-guide?style=social)](https://github.com/2085233418/lab-guide)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Language](https://img.shields.io/badge/language-Rust-orange.svg)](https://www.rust-lang.org/)
-[![Platform](https://img.shields.io/badge/platform-RISC--V-green.svg)](https://riscv.org/)
-
 [开始阅读](前言.md) | [快速开始](#快速开始) | [参与讨论](https://github.com/2085233418/lab-guide/discussions)
 
 </div>
